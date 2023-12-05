@@ -1,7 +1,7 @@
 ﻿using System.Net.Mail;
-using stock_quote_alert.Classes;
+using StockQuoteAlert.Classes;
 
-namespace stock_quote_alert.Interface;
+namespace StockQuoteAlert.Interface;
 
 internal interface IAction
 {

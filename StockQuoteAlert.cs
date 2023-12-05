@@ -1,7 +1,7 @@
-﻿using stock_quote_alert.Classes;
-using stock_quote_alert.Interface;
+﻿using StockQuoteAlert.Classes;
+using StockQuoteAlert.Interface;
 
-namespace stock_quote_alert;
+namespace StockQuoteAlert;
 
 internal static class Program{
     private static async Task Main(string[] args)

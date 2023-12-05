@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace stock_quote_alert.Classes;
+namespace StockQuoteAlert.Classes;
 
 internal abstract class Config
 {

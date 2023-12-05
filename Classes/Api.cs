@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Nodes;
 
-namespace stock_quote_alert.Classes;
+namespace StockQuoteAlert.Classes;
 
 public class Api
 {

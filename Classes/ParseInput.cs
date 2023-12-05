@@ -1,8 +1,4 @@
-﻿using System.Data;
-
-namespace stock_quote_alert;
-using System;
-
+﻿namespace StockQuoteAlert.Classes;
 public class Input
 {
     public string Stock {get ; set;}

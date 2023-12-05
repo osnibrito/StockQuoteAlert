@@ -1,8 +1,8 @@
 ﻿using System.Net.Mail;
 using System.Net;
-using stock_quote_alert.Interface;
+using StockQuoteAlert.Interface;
 
-namespace stock_quote_alert.Classes;
+namespace StockQuoteAlert.Classes;
 
 internal class Email
 {
