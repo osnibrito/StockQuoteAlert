@@ -17,13 +17,13 @@ internal static class Program{
             if (actualPrice >= inputArgs.PriceSell)
             {
                 Console.WriteLine($"Sending emails to sell {inputArgs.Stock}");
-                var emailManager = new Email(new Sell(), configs);
+                var emailManager = new EmailManager(new SellAction(), configs);
                 emailManager.SendEmail(inputArgs, inputArgs.PriceSell);
             }
             else if (actualPrice <= inputArgs.PriceBuy)
             {
                 Console.WriteLine($"Sending emails to buy {inputArgs.Stock}");
-                var emailManager = new Email(new Buy(), configs);
+                var emailManager = new EmailManager(new BuyAction(), configs);
                 emailManager.SendEmail(inputArgs, inputArgs.PriceBuy);
             }
             await Task.Delay(configs.ApiTimer);

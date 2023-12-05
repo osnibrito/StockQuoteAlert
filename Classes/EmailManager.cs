@@ -4,14 +4,14 @@ using StockQuoteAlert.Interface;
 
 namespace StockQuoteAlert.Classes;
 
-internal class Email
+internal class EmailManager
 {
     private readonly SmtpClient? _client;
     private readonly IAction _action;
     private readonly Config.EmailData _sender;
     private readonly IList<Config.EmailData> _receivers;
 
-    public Email(IAction action, Config.Setup setup)
+    public EmailManager(IAction action, Config.Setup setup)
     {
         _action = action;
         _sender = setup.Sender;

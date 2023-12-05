@@ -4,6 +4,12 @@ namespace StockQuoteAlert.Classes;
 
 internal abstract class Config
 {
+    internal struct EmailData
+    {
+        public string Address { get; set; }
+        public string Username { get; set; }
+    }
+
     public class Setup
     {
         public required string Host { get; set; }
@@ -16,13 +22,6 @@ internal abstract class Config
         public int ApiTimer { get; set; }
     }
 
-    internal struct EmailData
-    {
-        
-        public required string Address { get; set; }
-        public required string Username { get; set; }
-    }
-    
     public static Setup GetSetup(string filename)
     {
         var text = File.ReadAllText(filename);
