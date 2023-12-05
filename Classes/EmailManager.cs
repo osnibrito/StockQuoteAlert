@@ -28,8 +28,8 @@ internal class EmailManager
         }
         catch(Exception err)
         {
-            Console.WriteLine("Failed to connect with SMTP client");
-            Console.WriteLine(err);
+            Console.WriteLine(err.Message);
+            throw new Exception("Failed to connect with SMTP client");
         }
     }
     
@@ -46,8 +46,8 @@ internal class EmailManager
         }
         catch (Exception err)
         {
-            Console.WriteLine("Failed to send emails");
-            Console.WriteLine(err);
+            Console.WriteLine(err.Message);
+            throw new Exception("Failed to send emails");
         }
         _client!.Dispose();
     }
