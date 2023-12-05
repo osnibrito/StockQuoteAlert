@@ -1,14 +1,11 @@
-﻿using System.Runtime.InteropServices;
-using System.Text.Json.Nodes;
-using Microsoft.VisualBasic.CompilerServices;
+﻿using System.Text.Json.Nodes;
 
 namespace stock_quote_alert.Classes;
 
 public class Api
 {
-    private string _token;
-    static HttpClient _client;
-    private decimal _stockPrice;
+    private readonly string _token;
+    private static HttpClient? _client;
     
     public Api(string token)
     {
@@ -23,12 +20,9 @@ public class Api
 
     public async Task<decimal> GetPriceStock(string stock)
     {
-        //var content = null;
-//        string? contentData = null;
-        var response = await _client.GetAsync(MakePath(stock));
+        var response = await _client!.GetAsync(MakePath(stock));
         if (!response.IsSuccessStatusCode) throw new Exception("Falha na requisição da API");
-        var price = -1.0M;
-        
+        decimal price;        
         try
         {
             var contentData = await response.Content.ReadAsStringAsync();
@@ -37,10 +31,8 @@ public class Api
         }
         catch (Exception e)
         {
-            Console.WriteLine("Falha ao fazer o parser do JSON oferecido pela API");
-            Console.WriteLine(e.Message);
+            throw new Exception("Falha ao fazer o parser do JSON oferecido pela API");
         }
-
         return price;
     }
 }
