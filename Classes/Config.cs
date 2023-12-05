@@ -2,24 +2,25 @@
 
 namespace stock_quote_alert.Classes;
 
-internal class Config
+internal abstract class Config
 {
     public class Setup
     {
-
         public required string Host { get; set; }
         public int Port { get; set; }
         public required string Username { get; set; }
         public required string Password { get; set; }
         public required EmailData Sender { get; set; }
         public IList<EmailData>? Users { get; set; }
+        public required string ApiToken { get; set; }
+        public int ApiTimer { get; set; }
     }
 
-    public class EmailData
+    internal struct EmailData
     {
+        
         public required string Address { get; set; }
         public required string Username { get; set; }
-        
     }
     
     public static Setup GetSetup(string filename)
