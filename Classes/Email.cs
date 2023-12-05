@@ -8,15 +8,14 @@ internal class Email
 {
     private readonly SmtpClient? _client;
     private readonly IAction _action;
-    public class EmailContent
-    {
-        public string Subject { get; set; }
-        public string Body { get; set; }
-    }
+    private readonly Config.EmailData _sender;
+    private readonly IList<Config.EmailData> _receivers;
 
     public Email(IAction action, Config.Setup setup)
     {
         _action = action;
+        _sender = setup.Sender;
+        _receivers = setup.Users!;
         
         try
         {
@@ -34,25 +33,22 @@ internal class Email
         }
     }
     
-    public void SendEmail(Config.Setup config, Input input, decimal referenceValue)
+    public void SendEmail(Input input, decimal referenceValue)
     {
-        
         try
         {
-            Console.WriteLine(config.Users!);
-            foreach (var user in config.Users!)
+            foreach (var receiver in _receivers)
             {
-                var msg = _action.MakeMessage(config.Sender, user, input.Stock, referenceValue);
+                var msg = _action.MakeMessage(_sender, receiver, input.Stock, referenceValue);
                 _client!.Send(msg);
-                Console.WriteLine($"Email sent to {user.Address}");
+                Console.WriteLine($"Email sent to {receiver.Address}");
             }
         }
         catch (Exception err)
         {
             Console.WriteLine("Failed to send emails");
             Console.WriteLine(err);
-
         }
-
+        _client!.Dispose();
     }
 }
