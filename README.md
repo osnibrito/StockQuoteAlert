@@ -14,8 +14,9 @@ To run the project needs 3 arguments (stock, priceSell, priceBuy):
 Example:
 
 ```
->SotckQuoteAlert.exe PETR4 22.67 22.59
+>PETR4 36.67 35.59 
 ```
+> This example is in the IDE settings for input arguments.
 
 ## Configuration
 This aplication requires a configuration file in JSON, `appsetings.json`.
