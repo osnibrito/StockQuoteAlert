@@ -1,5 +1,4 @@
 ﻿using StockQuoteAlert.Classes;
-using StockQuoteAlert.Interface;
 
 namespace StockQuoteAlert;
 
@@ -18,13 +17,13 @@ internal static class Program{
             {
                 Console.WriteLine($"Sending emails to sell {inputArgs.Stock}");
                 var emailManager = new EmailManager(new SellAction(), configs);
-                emailManager.SendEmail(inputArgs, inputArgs.PriceSell);
+                await emailManager.SendEmail(inputArgs, inputArgs.PriceSell);
             }
             else if (actualPrice <= inputArgs.PriceBuy)
             {
                 Console.WriteLine($"Sending emails to buy {inputArgs.Stock}");
                 var emailManager = new EmailManager(new BuyAction(), configs);
-                emailManager.SendEmail(inputArgs, inputArgs.PriceBuy);
+                await emailManager.SendEmail(inputArgs, inputArgs.PriceBuy);
             }
             await Task.Delay(configs.ApiTimer);
         }

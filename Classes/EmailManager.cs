@@ -32,15 +32,14 @@ internal class EmailManager
             throw new Exception("Failed to connect with SMTP client");
         }
     }
-    
-    public void SendEmail(Input input, decimal referenceValue)
+    public async Task SendEmail(Input input, decimal referenceValue)
     {
         try
         {
             foreach (var receiver in _receivers)
             {
                 var msg = _action.MakeMessage(_sender, receiver, input.Stock, referenceValue);
-                _client!.Send(msg);
+                await _client!.SendMailAsync(msg);
                 Console.WriteLine($"Email sent to {receiver.Address}");
             }
         }
